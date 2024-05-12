@@ -2,6 +2,17 @@
   "name": "midashi",
   "version": "0.1",
   "description": "React component for headings",
+  "keywords": [
+    "react",
+    "typescript"
+  ],
+  "author": "bmthd <jougennotuki67@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bmthd/midashi"
+  },
+  "homepage": "https://github.com/bmthd/midashi",
   "type": "module",
   "files": [
     "dist",
@@ -11,9 +22,9 @@
   "module": "./dist/counter.js",
   "types": "./index.d.ts",
   "exports": {
-    "types": "./index.d.ts",
-    "import": "./dist/counter.js",
-    "require": "./dist/counter.umd.cjs"
+    "types": "./dist/index.d.ts",
+    "import": "./dist/index.js",
+    "require": "./dist/index.umd.cjs"
   },
   "scripts": {
     "dev": "vite",
@@ -25,12 +36,6 @@
     "lint:fix": "biome check --apply-unsafe ./lib",
     "test": "vitest"
   },
-  "keywords": [
-    "react",
-    "typescript"
-  ],
-  "author": "bmthd <jougennotuki67@gmail.com>",
-  "license": "MIT",
   "dependencies": {
     "react": "^18.3.1"
   },
