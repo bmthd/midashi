@@ -4,6 +4,5 @@ export {
   NextHeadingLevelProvider,
   useCurrentLevel,
   useNextLevel,
-  type HeadingLevel
+  type HeadingLevel,
 } from "./context";
-
