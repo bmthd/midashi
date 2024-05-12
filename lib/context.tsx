@@ -1,6 +1,6 @@
 "use client";
 
-import { HTMLProps, createContext, useContext, useMemo, type FC, type ReactNode } from "react";
+import { createContext, useContext, useMemo, type FC, type HTMLProps, type ReactNode } from "react";
 
 /** Number applicable to headings. */
 export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
@@ -35,7 +35,7 @@ const Case = {
   4: (props) => <h4 {...props} />,
   5: (props) => <h5 {...props} />,
   6: (props) => <h6 {...props} />,
-} as const satisfies Record<HeadingLevel, (props: HTMLProps<HTMLHeadingElement>) => JSX.Element>;
+} as const satisfies Record<HeadingLevel, (props: HTMLProps<HTMLHeadingElement>) => React.JSX.Element>;
 
 /**
  * Renders the heading component according to the number of times the `NextHeadingLevelProvider` is nested.

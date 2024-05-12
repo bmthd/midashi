@@ -21,7 +21,8 @@
     "format:test": "biome format ./lib",
     "format:fix": "biome format --write ./lib",
     "lint:test": "biome lint ./lib",
-    "lint:fix": "biome lint --fix ./lib",
+    "lint:safe-fix": "biome check --apply ./lib",
+    "lint:fix": "biome check --apply-unsafe ./lib",
     "test": "vitest"
   },
   "keywords": [
