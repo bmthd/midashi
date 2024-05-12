@@ -35,7 +35,10 @@ const Case = {
   4: (props) => <h4 {...props} />,
   5: (props) => <h5 {...props} />,
   6: (props) => <h6 {...props} />,
-} as const satisfies Record<HeadingLevel, (props: HTMLProps<HTMLHeadingElement>) => React.JSX.Element>;
+} as const satisfies Record<
+  HeadingLevel,
+  (props: HTMLProps<HTMLHeadingElement>) => React.JSX.Element
+>;
 
 /**
  * Renders the heading component according to the number of times the `NextHeadingLevelProvider` is nested.
