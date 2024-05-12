@@ -1,0 +1,90 @@
+name: Bun🥟 CI
+
+on: pull_request
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Cache 💾
+        uses: actions/cache@v4
+        id: cache
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-build-${{ hashFiles('package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ hashFiles('package.json') }}
+      - if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+        name: Setup Bun 🥟
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest   
+      - if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+        name: Install dependencies 📦
+        run: bun install
+  
+  lint:
+    runs-on: ubuntu-latest
+    needs: setup
+
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Cache 💾
+        uses: actions/cache@v4
+        id: cache
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-build-${{ hashFiles('package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ hashFiles('package.json') }}
+
+      - name: Setup Bun 🥟
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+          
+      - name: Run format 🖌
+        run: bun run format:test
+
+      - name: Run lint 🧹
+        run: bun run lint:test
+
+  test:
+    runs-on: ubuntu-latest
+    needs: setup
+
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Cache 💾
+        uses: actions/cache@v4
+        id: cache
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-build-${{ hashFiles('package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ hashFiles('package.json') }}
+
+      - name: Setup Bun 🥟
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest   
+
+      - name: Run test 🧪
+        run: bun run test
+        

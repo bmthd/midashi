@@ -18,5 +18,3 @@ export const Section: FC<HTMLProps<HTMLElement>> = (props) => (
     <section {...props} />
   </NextHeadingLevelProvider>
 );
-
-
