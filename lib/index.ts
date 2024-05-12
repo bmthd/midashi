@@ -1,7 +1,9 @@
-export { H, Main, Section } from "./components";
+export { Main, Section } from "./components";
 export {
+  H,
   NextHeadingLevelProvider,
   useCurrentLevel,
   useNextLevel,
-  type HeadingLevel,
+  type HeadingLevel
 } from "./context";
+

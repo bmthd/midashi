@@ -1,9 +1,7 @@
 import { render, renderHook, screen } from "@testing-library/react";
-import { describe } from "node:test";
 import React from "react";
-import { expect, it } from "vitest";
-import { H, Main, Section } from "../lib/components";
-import { NextHeadingLevelProvider, useCurrentLevel, useNextLevel } from "../lib/context";
+import { describe, expect, it } from "vitest";
+import { H, Main, NextHeadingLevelProvider, Section, useCurrentLevel, useNextLevel } from "../lib";
 
 describe('e2e', () => {
     it('should render all headings', () => {
