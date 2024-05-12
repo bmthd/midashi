@@ -35,7 +35,8 @@
     "lint:test": "biome lint ./lib",
     "lint:safe-fix": "biome check --apply ./lib",
     "lint:fix": "biome check --apply-unsafe ./lib",
-    "test": "vitest"
+    "test": "vitest",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.7.3",
