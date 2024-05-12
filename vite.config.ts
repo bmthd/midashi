@@ -2,9 +2,10 @@
 import { resolve } from "path";
 import { defineConfig } from 'vite';
 import dts from "vite-plugin-dts";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  plugins: [dts()],
+  plugins: [dts(),react()],
   build: {
     lib: {
       entry: resolve(__dirname, "./lib/index.ts"),
@@ -12,6 +13,16 @@ export default defineConfig({
       fileName: "index",
       formats: ["es", "umd"],
     },
+    rollupOptions:{
+      external: ["react"],
+      output: {
+        globals: {
+          react: "React",
+        },
+        banner: `'use client';`,
+      },
+
+    }
   },
   test: {
     globals: true,
