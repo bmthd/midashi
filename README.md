@@ -72,13 +72,49 @@ This is rendered as follows:
 </main>
 ```
 
-## Other API
+## API
+
+### `<Main />`, `<Section />`, `<Header />`, `<Footer />`, `<Article />`, `<Aside />`, `<Nav />`
+
+These are components that draw the main, section, header, footer, article, aside, and nav elements.
+They are thin wrappers for their respective DOM components and can be used exactly like them.
+It acts as a Context Provider and can lower the heading level to get its children.
+
+```tsx
+import { Main, Section, Header, Footer, Article, Aside, Nav, H } from 'midashi';
+
+const Component = () => (
+  <>
+    <H>Heading 1</H>
+    <Main>
+      <H>Heading 2</H>
+      <Section>
+        <H>Heading 3</H>
+        <Header>
+          <H>Heading 4</H>
+        </Header>
+        <Footer>
+          <H>Heading 4</H>
+        </Footer>
+        <Article>
+          <H>Heading 4</H>
+        </Article>
+        <Aside>
+          <H>Heading 4</H>
+        </Aside>
+        <Nav>
+          <H>Heading 4</H>
+        </Nav>
+      </Section>
+    </Main>
+  </>
+);
+```
 
 ### `<NextHeadingLevelProvider />`
 
-This is context provider that increments the heading level used inside `Main` and `Section`.
+This is context provider that increments the heading level used inside DOM component wrappers.
 Works like them, but does not draw anything.
-This is useful, for example, when used in combination with libraries.
 
 ```tsx
 import { NextHeadingLevelProvider } from 'midashi';
@@ -108,6 +144,7 @@ const Component = () => (
 ### `useCurrentLevel`
 
 Between 1 and 6 to get how many heading levels that hierarchy should draw.
+The value is a union type between 1 and 6, which is useful when creating your own components, such as in a switch statement.
 
 ```tsx
 import { useCurrentLevel } from 'midashi';

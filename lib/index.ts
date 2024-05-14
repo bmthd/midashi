@@ -1,4 +1,4 @@
-export { Main, Section } from "./components";
+export { Main, Section, Article, Aside, Footer, Header, Nav } from "./components";
 export {
   H,
   NextHeadingLevelProvider,

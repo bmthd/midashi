@@ -1,7 +1,10 @@
 import { render, renderHook, screen } from "@testing-library/react";
-import React from "react";
+import type { FC, HTMLProps } from "react";
 import { describe, expect, it } from "vitest";
 import { H, Main, NextHeadingLevelProvider, Section, useCurrentLevel, useNextLevel } from "../lib";
+import { Article, Aside, Footer, Header, Nav } from "../lib/components";
+// biome-ignore lint/correctness/noUnusedImports: <explanation>
+import React from "react";
 
 describe('e2e', () => {
     it('should render all headings', () => {
@@ -66,51 +69,59 @@ describe("NextHeadingLevelProvider component", () => {
     });
 });
 
-describe("Main component", () => {
-    it("should render main element", () => {
-        const result = render(<Main />);
-        expect(result.container.querySelector('main')).toContainHTML('<main></main>');
+const cases: { Target: FC<HTMLProps<HTMLElement>>, expected: string }[] = [
+    {
+        Target: Main,
+        expected: '<main></main>'
+    },
+    {
+        Target: Section,
+        expected: '<section></section>'
+    },
+    {
+        Target: Header,
+        expected: '<header></header>'
+    },
+    {
+        Target: Footer,
+        expected: '<footer></footer>'
+    },
+    {
+        Target: Article,
+        expected: '<article></article>'
+    },
+    {
+        Target: Aside,
+        expected: '<aside></aside>'
+    },
+    {
+        Target: Nav,
+        expected: '<nav></nav>'
+    }
+]
+
+describe.each(cases)('Component', ({ Target, expected }) => {
+    it(`should render ${expected}`, () => {
+        const result = render(<Target />);
+        expect(result.container).toContainHTML(expected);
     });
 
-    it("reflected the change of heading level", () => {
+    it('should reflect the change of heading level', () => {
         const result = render(
-            <Main>
+            <Target>
                 <H />
-            </Main>
+            </Target>
         );
         expect(result.container.querySelector('h2')).toContainHTML('<h2></h2>');
     });
 
-    it("reflects the attribute of the main element", () => {
+    it('should reflect the attribute of the element', () => {
         const result = render(
-            <Main id="main" />
+            <Target className="target" />
         );
-        expect(result.container.querySelector('main')).toHaveAttribute('id', 'main');
+        expect(result.container.querySelector(Target.name.toLowerCase())).toHaveClass('target');
     });
-});
-
-describe("Section component", () => {
-    it("should render section element", () => {
-        const result = render(<Section />);
-        expect(result.container.querySelector('section')).toContainHTML('<section></section>');
-    });
-
-    it("reflected the change of heading level", () => {
-        const result = render(
-            <Section>
-                <H />
-            </Section>
-        );
-        expect(result.container.querySelector('h2')).toContainHTML('<h2></h2>');
-    });
-
-    it("reflects the attribute of the section element", () => {
-        const result = render(
-            <Section className="section" />
-        );
-        expect(result.container.querySelector('section')).toHaveClass('section');
-    });
-});
+})
 
 describe("H component", () => {
     it("should render h1 element", () => {
