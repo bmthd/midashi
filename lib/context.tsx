@@ -1,18 +1,18 @@
 "use client";
 
-import { createContext, useContext, type FC, type HTMLProps, type ReactNode } from "react";
+import { type FC, type HTMLProps, type ReactNode, createContext, useContext } from "react";
 
-const headingLevels = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const
+const headingLevels = ["h1", "h2", "h3", "h4", "h5", "h6"] as const;
 
 /** String literal type for heading levels */
-export type HeadingLevel = typeof headingLevels[number];
+export type HeadingLevel = (typeof headingLevels)[number];
 
 const getNextLevel = (level: HeadingLevel): HeadingLevel => {
   const index = headingLevels.indexOf(level);
   return headingLevels[index + 1] || level;
-}
+};
 
-const HeadingLevelContext = createContext<HeadingLevel>('h1');
+const HeadingLevelContext = createContext<HeadingLevel>("h1");
 
 /**
  * Get the current heading level of current context.
