@@ -1,11 +1,18 @@
 "use client";
 
-import { createContext, useContext, useMemo, type FC, type HTMLProps, type ReactNode } from "react";
+import { type FC, type HTMLProps, type ReactNode, createContext, useContext } from "react";
 
-/** Number applicable to headings. */
-export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
+const headingLevels = ["h1", "h2", "h3", "h4", "h5", "h6"] as const;
 
-const HeadingLevelContext = createContext<HeadingLevel>(1);
+/** String literal type for heading levels */
+export type HeadingLevel = (typeof headingLevels)[number];
+
+const getNextLevel = (level: HeadingLevel): HeadingLevel => {
+  const index = headingLevels.indexOf(level);
+  return headingLevels[index + 1] || level;
+};
+
+const HeadingLevelContext = createContext<HeadingLevel>("h1");
 
 /**
  * Get the current heading level of current context.
@@ -15,9 +22,9 @@ export const useCurrentLevel = () => useContext(HeadingLevelContext);
 /**
  * Get the next heading level of current context.
  */
-export const useNextLevel = (): HeadingLevel => {
+export const useNextLevel = () => {
   const level = useCurrentLevel();
-  return useMemo(() => Math.min(6, level + 1), [level]) as HeadingLevel;
+  return getNextLevel(level);
 };
 
 /**
@@ -29,12 +36,12 @@ export const NextHeadingLevelProvider: FC<{ children: ReactNode }> = ({ children
 };
 
 const Case = {
-  1: (props) => <h1 {...props} />,
-  2: (props) => <h2 {...props} />,
-  3: (props) => <h3 {...props} />,
-  4: (props) => <h4 {...props} />,
-  5: (props) => <h5 {...props} />,
-  6: (props) => <h6 {...props} />,
+  h1: (props) => <h1 {...props} />,
+  h2: (props) => <h2 {...props} />,
+  h3: (props) => <h3 {...props} />,
+  h4: (props) => <h4 {...props} />,
+  h5: (props) => <h5 {...props} />,
+  h6: (props) => <h6 {...props} />,
 } as const satisfies Record<
   HeadingLevel,
   (props: HTMLProps<HTMLHeadingElement>) => React.JSX.Element
