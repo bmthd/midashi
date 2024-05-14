@@ -23,7 +23,26 @@ pnpm add midashi
 bun install midashi
 ```
 
-## Usage
+## Concept
+
+The h1-h6 tags used to render the heading level are simple, but they can easily create impossible situations in the document structure.
+For example
+
+```tsx
+export default function App() {
+  return (
+    <main> {/* Missing h1 */}
+      <h2>Heading 2</h2>
+      <h3>Heading 3</h3> {/* Same section in the same heading level */}
+    </main> 
+  )
+}
+
+```
+
+In the actual product, the code will be split and possibly commonized.
+The larger the application, the more difficult it becomes to detect.
+This library provides a thin wrapper around the h tag and the tags that represent the document structure so that the tag itself can determine which heading level it should provide.
 
 ```tsx:App.tsx
 import { Main, Section, H } from 'midashi';
@@ -118,53 +137,54 @@ Works like them, but does not draw anything.
 
 ```tsx
 import { NextHeadingLevelProvider } from 'midashi';
+import { Container } from '@chakra-ui/react';
 
-const Component = () => (
-    <>
-      <H>Heading 1</H>
-      <NextHeadingLevelProvider>
-        <H>Heading 2</H>
-        <NextHeadingLevelProvider>
-          <H>Heading 3</H>
-          <NextHeadingLevelProvider>
-            <H>Heading 4</H>
-            <NextHeadingLevelProvider>
-              <H>Heading 5</H>
-              <NextHeadingLevelProvider>
-                <H>Heading 6</H>
-              </NextHeadingLevelProvider>
-            </NextHeadingLevelProvider>
-          </NextHeadingLevelProvider>
-        </NextHeadingLevelProvider>
-    </NextHeadingLevelProvider>
-    </>
-)
+export const MyContainer:FC<{ children:ReactNode }> = ({ children }) => (
+  <NextHeadingLevelProvider>
+    <Container>
+      {children}
+    </Container>
+  </NextHeadingLevelProvider>
+);
 ```
 
-### `useCurrentLevel`
+### `useCurrentLevel`, `useNextLevel`
 
-Between 1 and 6 to get how many heading levels that hierarchy should draw.
+Between h1 and h6 to get how many heading levels that hierarchy should draw.
 The value is a union type between 1 and 6, which is useful when creating your own components, such as in a switch statement.
+Use in combination with libraries as follows:
 
 ```tsx
 import { useCurrentLevel } from 'midashi';
+import { Heading } from '@chakra-ui/react';
 
-const Component = () => {
-  const currentLevel = useCurrentLevel();
-  return <>{currentLevel}</>;
+const MyHeading = () => {
+  const as = useCurrentLevel();
+  return <Heading as={as}>Heading</Heading>;
 };
 ```
 
-### `useNextLevel`
-
-Get the incremented heading level of up to 6 that should be passed to NextHeadingLevelProvider.
+You can also create your own components with a pre-designed look and feel as follows:
 
 ```tsx
-import { useNextLevel } from 'midashi';
+import { useCurrentLevel} from 'midashi';
 
-const Component = () => {
-  const nextLevel = useNextLevel();
-  return <>{nextLevel}</>;
+const MyHeading = () => {
+  const level = useCurrentLevel();
+  switch (level) {
+    case 'h1':
+      return <h1 className="site-title">Heading</h1>;
+    case 'h2':
+      return <h2 className="page-title">Heading</h2>;
+    case 'h3':
+      return <h3 className="section-title">Heading</h3>;
+    case 'h4':
+      return <h4 className="sub-section-title">Heading</h4>;
+    case 'h5':
+      return <h5 className="sub-sub-section-title">Heading</h5>;
+    case 'h6':
+      return <h6 className="sub-sub-sub-section-title">Heading</h6>;
+  }
 };
 ```
 

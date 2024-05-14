@@ -155,14 +155,14 @@ describe("H component", () => {
 describe('useCurrentLevel', () => {
     it('should return 1 by default', () => {
         const result = renderHook(() => useCurrentLevel());
-        expect(result.result.current).toBe(1);
+        expect(result.result.current).toBe('h1');
     });
 
     it('should return 2 when surrounded by Provider once', () => {
         const result = renderHook(() => useCurrentLevel(), {
             wrapper: ({ children }) => <NextHeadingLevelProvider>{children}</NextHeadingLevelProvider>
         });
-        expect(result.result.current).toBe(2);
+        expect(result.result.current).toBe('h2');
     });
 
     it('should return 6 when surrounded by Provider more than 5 times', () => {
@@ -183,7 +183,7 @@ describe('useCurrentLevel', () => {
                 </NextHeadingLevelProvider>
             )
         });
-        expect(result.result.current).toBe(6);
+        expect(result.result.current).toBe('h6');
     }
     )
 })
@@ -191,14 +191,14 @@ describe('useCurrentLevel', () => {
 describe('useNextLevel', () => {
     it('should return 2 by default', () => {
         const result = renderHook(() => useNextLevel());
-        expect(result.result.current).toBe(2);
+        expect(result.result.current).toBe('h2');
     });
 
     it('should return 3 when surrounded by Provider once', () => {
         const result = renderHook(() => useNextLevel(), {
             wrapper: ({ children }) => <NextHeadingLevelProvider>{children}</NextHeadingLevelProvider>
         });
-        expect(result.result.current).toBe(3);
+        expect(result.result.current).toBe('h3');
     });
 
     it('should return 6 when surrounded by Provider more than 5 times', () => {
@@ -219,7 +219,7 @@ describe('useNextLevel', () => {
                 </NextHeadingLevelProvider>
             )
         });
-        expect(result.result.current).toBe(6);
+        expect(result.result.current).toBe('h6');
     }
     )
 })
