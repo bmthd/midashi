@@ -1,19 +1,19 @@
 /// <reference types="vitest" />
-import { resolve } from "path";
-import { defineConfig } from 'vite';
+import { resolve } from "node:path";
+import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  plugins: [dts(),react()],
+  plugins: [dts(), react()],
   build: {
     lib: {
       entry: resolve(__dirname, "./lib/index.ts"),
-      name: "react-h", 
+      name: "midashi",
       fileName: "index",
       formats: ["es", "umd"],
     },
-    rollupOptions:{
+    rollupOptions: {
       external: ["react"],
       output: {
         globals: {
@@ -21,8 +21,7 @@ export default defineConfig({
         },
         banner: `'use client';`,
       },
-
-    }
+    },
   },
   test: {
     globals: true,
@@ -30,4 +29,4 @@ export default defineConfig({
     setupFiles: "./test/setup.ts",
     exclude: ["./node_modules/**"],
   },
-})
+});
