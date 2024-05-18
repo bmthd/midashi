@@ -130,21 +130,21 @@ const Component = () => (
 );
 ```
 
-### `<NextHeadingLevelProvider />`
+### `<NextHeadingProvider />`
 
 This is context provider that increments the heading level used inside DOM component wrappers.
 Works like them, but does not draw anything.
 
 ```tsx
-import { NextHeadingLevelProvider } from 'midashi';
+import { NextHeadingProvider } from 'midashi';
 import { Container } from '@chakra-ui/react';
 
 export const MyContainer:FC<{ children:ReactNode }> = ({ children }) => (
-  <NextHeadingLevelProvider>
+  <NextHeadingProvider>
     <Container>
       {children}
     </Container>
-  </NextHeadingLevelProvider>
+  </NextHeadingProvider>
 );
 ```
 
