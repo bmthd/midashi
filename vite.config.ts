@@ -5,7 +5,7 @@ import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
 import { name } from "./package.json";
 
-const formattedName = name.match(/[^/]+$/)?.[0] ?? name
+const formattedName = name.match(/[^/]+$/)?.[0] ?? name;
 
 export default defineConfig({
   plugins: [dts(), react()],
@@ -17,12 +17,11 @@ export default defineConfig({
       fileName: (format) => `${formattedName}.${format}.js`,
     },
     rollupOptions: {
-      external: ['react', 'react/jsx-runtime', 'react-dom'],
+      external: ["react", "react/jsx-runtime"],
       output: {
         globals: {
-          react: 'React',
-          'react/jsx-runtime': 'react/jsx-runtime',
-          'react-dom': 'ReactDOM',
+          react: "React",
+          "react/jsx-runtime": "react/jsx-runtime",
         },
         banner: `'use client';`,
       },
