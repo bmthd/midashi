@@ -1,8 +1,8 @@
 /// <reference types="vitest" />
-import react from "@vitejs/plugin-react";
 import { resolve } from "node:path";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
+import react from "@vitejs/plugin-react";
 import { name } from "./package.json";
 
 const formattedName = name.match(/[^/]+$/)?.[0] ?? name;
