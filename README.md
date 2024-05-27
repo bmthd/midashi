@@ -151,7 +151,7 @@ export const MyContainer:FC<{ children:ReactNode }> = ({ children }) => (
 ### `useCurrentLevel`, `useNextLevel`
 
 Between h1 and h6 to get how many heading levels that hierarchy should draw.
-The value is a union type between 1 and 6, which is useful when creating your own components, such as in a switch statement.
+The value is a union type between h1 and h6, which is useful when creating your own components, such as in a switch statement.
 Use in combination with libraries as follows:
 
 ```tsx

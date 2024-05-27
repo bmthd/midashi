@@ -3,6 +3,9 @@ import { resolve } from "node:path";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
 import react from "@vitejs/plugin-react";
+import { name } from "./package.json";
+
+const formattedName = name.match(/[^/]+$/)?.[0] ?? name;
 
 export default defineConfig({
   plugins: [dts(), react()],
@@ -10,14 +13,15 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, "./lib/index.ts"),
       name: "midashi",
-      fileName: "index",
       formats: ["es", "umd"],
+      fileName: (format) => `${formattedName}.${format}.js`,
     },
     rollupOptions: {
-      external: ["react"],
+      external: ["react", "react/jsx-runtime"],
       output: {
         globals: {
           react: "React",
+          "react/jsx-runtime": "react/jsx-runtime",
         },
         banner: `'use client';`,
       },
