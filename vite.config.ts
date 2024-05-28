@@ -5,16 +5,14 @@ import dts from "vite-plugin-dts";
 import react from "@vitejs/plugin-react";
 import { name } from "./package.json";
 
-const formattedName = name.match(/[^/]+$/)?.[0] ?? name;
-
 export default defineConfig({
   plugins: [dts(), react()],
   build: {
     lib: {
       entry: resolve(__dirname, "./lib/index.ts"),
-      name: "midashi",
+      name,
       formats: ["es", "umd"],
-      fileName: (format) => `${formattedName}.${format}.js`,
+      fileName: "index",
     },
     rollupOptions: {
       external: ["react", "react/jsx-runtime"],
