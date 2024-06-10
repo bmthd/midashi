@@ -1,7 +1,7 @@
 import { render, renderHook, screen } from "@testing-library/react";
 import type { FC, HTMLProps } from "react";
 import { describe, expect, it } from "vitest";
-import { H, Main, NextHeadingProvider, Section, useCurrentLevel, useNextLevel } from "../lib";
+import { H, Main, LevelProvider, Section, useCurrentLevel, useNextLevel } from "../lib";
 import { Article, Aside, Footer, Header, Nav } from "../lib/components";
 // biome-ignore lint/correctness/noUnusedImports: <explanation>
 import React from "react";
@@ -56,21 +56,21 @@ describe("e2e", () => {
   });
 });
 
-describe("NextHeadingProvider component", () => {
+describe("LevelProvider component", () => {
   it("should render only children", () => {
     const result = render(
-      <NextHeadingProvider>
+      <LevelProvider>
         <div />
-      </NextHeadingProvider>,
+      </LevelProvider>,
     );
     expect(result.container).toContainHTML("<div></div>");
   });
 
   it("should render children with the next heading level", () => {
     const result = render(
-      <NextHeadingProvider>
+      <LevelProvider>
         <H />
-      </NextHeadingProvider>,
+      </LevelProvider>,
     );
     expect(result.container.querySelector("h2")).toContainHTML("<h2></h2>");
   });
@@ -107,7 +107,7 @@ const cases: { Target: FC<HTMLProps<HTMLElement>>; expected: string }[] = [
   },
 ];
 
-describe.each(cases)("Component", ({ Target, expected }) => {
+describe.each(cases)("$Target.name Component", ({ Target, expected }) => {
   it(`should render ${expected}`, () => {
     const result = render(<Target />);
     expect(result.container).toContainHTML(expected);
@@ -115,9 +115,12 @@ describe.each(cases)("Component", ({ Target, expected }) => {
 
   it("should reflect the change of heading level", () => {
     const result = render(
-      <Target>
+      <>
         <H />
-      </Target>,
+        <Target>
+          <H />
+        </Target>
+      </>,
     );
     expect(result.container.querySelector("h2")).toContainHTML("<h2></h2>");
   });
@@ -136,29 +139,44 @@ describe("H component", () => {
 
   it("should render h2 element when surrounded by Provider once", () => {
     const result = render(
-      <NextHeadingProvider>
+      <>
         <H />
-      </NextHeadingProvider>,
+        <LevelProvider>
+          <H />
+        </LevelProvider>
+      </>,
     );
+    screen.debug(result.container);
     expect(result.container.querySelector("h2")).toContainHTML("<h2></h2>");
   });
   it("should render h6 element when surrounded by Provider more than 5 times", () => {
     const result = render(
-      <NextHeadingProvider>
-        <NextHeadingProvider>
-          <NextHeadingProvider>
-            <NextHeadingProvider>
-              <NextHeadingProvider>
-                <NextHeadingProvider>
+      <LevelProvider>
+        <LevelProvider>
+          <LevelProvider>
+            <LevelProvider>
+              <LevelProvider>
+                <LevelProvider>
                   <H />
-                </NextHeadingProvider>
-              </NextHeadingProvider>
-            </NextHeadingProvider>
-          </NextHeadingProvider>
-        </NextHeadingProvider>
-      </NextHeadingProvider>,
+                </LevelProvider>
+              </LevelProvider>
+            </LevelProvider>
+          </LevelProvider>
+        </LevelProvider>
+      </LevelProvider>,
     );
     expect(result.container.querySelector("h6")).toContainHTML("<h6></h6>");
+  });
+
+  it("should throw an error when h1 is already rendered", () => {
+    expect(() =>
+      render(
+        <>
+          <H />
+          <H />
+        </>,
+      ),
+    ).toThrowError("Only one <h1> is allowed in the document");
   });
 });
 
@@ -170,7 +188,7 @@ describe("useCurrentLevel", () => {
 
   it("should return 2 when surrounded by Provider once", () => {
     const result = renderHook(() => useCurrentLevel(), {
-      wrapper: ({ children }) => <NextHeadingProvider>{children}</NextHeadingProvider>,
+      wrapper: ({ children }) => <LevelProvider>{children}</LevelProvider>,
     });
     expect(result.result.current).toBe("h2");
   });
@@ -178,17 +196,17 @@ describe("useCurrentLevel", () => {
   it("should return 6 when surrounded by Provider more than 5 times", () => {
     const result = renderHook(() => useCurrentLevel(), {
       wrapper: ({ children }) => (
-        <NextHeadingProvider>
-          <NextHeadingProvider>
-            <NextHeadingProvider>
-              <NextHeadingProvider>
-                <NextHeadingProvider>
-                  <NextHeadingProvider>{children}</NextHeadingProvider>
-                </NextHeadingProvider>
-              </NextHeadingProvider>
-            </NextHeadingProvider>
-          </NextHeadingProvider>
-        </NextHeadingProvider>
+        <LevelProvider>
+          <LevelProvider>
+            <LevelProvider>
+              <LevelProvider>
+                <LevelProvider>
+                  <LevelProvider>{children}</LevelProvider>
+                </LevelProvider>
+              </LevelProvider>
+            </LevelProvider>
+          </LevelProvider>
+        </LevelProvider>
       ),
     });
     expect(result.result.current).toBe("h6");
@@ -198,12 +216,12 @@ describe("useCurrentLevel", () => {
 describe("useNextLevel", () => {
   it("should return 2 by default", () => {
     const result = renderHook(() => useNextLevel());
-    expect(result.result.current).toBe("h2");
+    expect(result.result.current).toBe("2");
   });
 
   it("should return 3 when surrounded by Provider once", () => {
     const result = renderHook(() => useNextLevel(), {
-      wrapper: ({ children }) => <NextHeadingProvider>{children}</NextHeadingProvider>,
+      wrapper: ({ children }) => <LevelProvider>{children}</LevelProvider>,
     });
     expect(result.result.current).toBe("h3");
   });
@@ -211,17 +229,17 @@ describe("useNextLevel", () => {
   it("should return 6 when surrounded by Provider more than 5 times", () => {
     const result = renderHook(() => useNextLevel(), {
       wrapper: ({ children }) => (
-        <NextHeadingProvider>
-          <NextHeadingProvider>
-            <NextHeadingProvider>
-              <NextHeadingProvider>
-                <NextHeadingProvider>
-                  <NextHeadingProvider>{children}</NextHeadingProvider>
-                </NextHeadingProvider>
-              </NextHeadingProvider>
-            </NextHeadingProvider>
-          </NextHeadingProvider>
-        </NextHeadingProvider>
+        <LevelProvider>
+          <LevelProvider>
+            <LevelProvider>
+              <LevelProvider>
+                <LevelProvider>
+                  <LevelProvider>{children}</LevelProvider>
+                </LevelProvider>
+              </LevelProvider>
+            </LevelProvider>
+          </LevelProvider>
+        </LevelProvider>
       ),
     });
     expect(result.result.current).toBe("h6");

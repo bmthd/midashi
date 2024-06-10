@@ -1,65 +1,65 @@
 import type { FC, HTMLProps } from "react";
-import { NextHeadingProvider } from "./context";
+import { LevelProvider } from "./context";
 
 /**
- * main element wrapped with `NextHeadingProvider`
+ * main element wrapped with `LevelProvider`
  */
 export const Main: FC<HTMLProps<HTMLElement>> = (props) => (
-  <NextHeadingProvider>
+  <LevelProvider>
     <main {...props} />
-  </NextHeadingProvider>
+  </LevelProvider>
 );
 
 /**
- * section element wrapped with `NextHeadingProvider`
+ * section element wrapped with `LevelProvider`
  */
 export const Section: FC<HTMLProps<HTMLElement>> = (props) => (
-  <NextHeadingProvider>
+  <LevelProvider>
     <section {...props} />
-  </NextHeadingProvider>
+  </LevelProvider>
 );
 
 /**
- * header element wrapped with `NextHeadingProvider`
+ * header element wrapped with `LevelProvider`
  */
 export const Header: FC<HTMLProps<HTMLElement>> = (props) => (
-  <NextHeadingProvider>
+  <LevelProvider>
     <header {...props} />
-  </NextHeadingProvider>
+  </LevelProvider>
 );
 
 /**
- * footer element wrapped with `NextHeadingProvider`
+ * footer element wrapped with `LevelProvider`
  */
 export const Footer: FC<HTMLProps<HTMLElement>> = (props) => (
-  <NextHeadingProvider>
+  <LevelProvider>
     <footer {...props} />
-  </NextHeadingProvider>
+  </LevelProvider>
 );
 
 /**
- * article element wrapped with `NextHeadingProvider`
+ * article element wrapped with `LevelProvider`
  */
 export const Article: FC<HTMLProps<HTMLElement>> = (props) => (
-  <NextHeadingProvider>
+  <LevelProvider>
     <article {...props} />
-  </NextHeadingProvider>
+  </LevelProvider>
 );
 
 /**
- * aside element wrapped with `NextHeadingProvider`
+ * aside element wrapped with `LevelProvider`
  */
 export const Aside: FC<HTMLProps<HTMLElement>> = (props) => (
-  <NextHeadingProvider>
+  <LevelProvider>
     <aside {...props} />
-  </NextHeadingProvider>
+  </LevelProvider>
 );
 
 /**
- * nav element wrapped with `NextHeadingProvider`
+ * nav element wrapped with `LevelProvider`
  */
 export const Nav: FC<HTMLProps<HTMLElement>> = (props) => (
-  <NextHeadingProvider>
+  <LevelProvider>
     <nav {...props} />
-  </NextHeadingProvider>
+  </LevelProvider>
 );
