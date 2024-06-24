@@ -1,5 +1,6 @@
 "use client";
 
+import type React from "react";
 import { type FC, type HTMLProps, type ReactNode, createContext, useContext } from "react";
 
 const headingLevels = ["h1", "h2", "h3", "h4", "h5", "h6"] as const;
