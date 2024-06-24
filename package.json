@@ -42,12 +42,12 @@
     "@biomejs/biome": "^1.7.3",
     "@testing-library/jest-dom": "^6.4.5",
     "@testing-library/react": "^15.0.7",
-    "@types/node": "^20.12.11",
+    "@types/bun": "^1.1.5",
     "@types/react": "^18.3.2",
     "@vitejs/plugin-react": "^4.2.1",
     "happy-dom": "^14.10.1",
-    "typescript": "^5.4.5",
-    "vite": "^5.2.10",
+    "typescript": "^5.5.2",
+    "vite": "^5.3.1",
     "vite-plugin-dts": "^3.9.1",
     "vitest": "^1.6.0"
   },
@@ -61,5 +61,6 @@
     "react": {
       "optional": true
     }
-  }
+  },
+  "packageManager": "bun@1.1.0"
 }
