@@ -22,7 +22,7 @@ jobs:
             ${{ runner.os }}-build-${{ hashFiles('package.json') }}
       - if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         name: Setup Bun 🥟
-        uses: oven-sh/setup-bun@v1
+        uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest   
       - if: ${{ steps.cache.outputs.cache-hit != 'true' }}
@@ -50,7 +50,7 @@ jobs:
             ${{ runner.os }}-build-${{ hashFiles('package.json') }}
 
       - name: Setup Bun 🥟
-        uses: oven-sh/setup-bun@v1
+        uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
           
@@ -81,7 +81,7 @@ jobs:
             ${{ runner.os }}-build-${{ hashFiles('package.json') }}
 
       - name: Setup Bun 🥟
-        uses: oven-sh/setup-bun@v1
+        uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest   
 
