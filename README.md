@@ -188,6 +188,17 @@ const MyHeading = () => {
 };
 ```
 
+## Examples
+
+Check out the [sample directory](./sample) for comprehensive examples demonstrating various Midashi usage patterns:
+
+- **SimpleExample**: Basic usage with automatic heading hierarchy
+- **WebsiteExample**: Realistic website layout with all semantic components
+- **ComprehensiveExample**: Advanced patterns with custom components and hooks
+- **OriginalBrokenExample**: Shows problems that Midashi solves
+
+Each example includes detailed comments and expected HTML output.
+
 ## License
 
 MIT
