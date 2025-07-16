@@ -7,6 +7,15 @@ export default tseslint.config(
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
+    ignores: [
+      'dist/**',
+      'node_modules/**',
+      '*.js', // Ignore all JS files at root (like this config)
+      '*.mjs',
+      '*.cjs',
+    ],
+  },
+  {
     files: ['**/*.{js,jsx,ts,tsx}'],
     plugins: {
       react,
@@ -89,6 +98,7 @@ export default tseslint.config(
       // React specific rules
       'react/react-in-jsx-scope': 'off', // Not needed with React 17+ JSX transform
       'react/prop-types': 'off', // Using TypeScript for prop validation
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
     },
   },
   {
@@ -103,6 +113,7 @@ export default tseslint.config(
     files: ['test/**/*.{js,jsx,ts,tsx}', '**/*.test.{js,jsx,ts,tsx}', '**/*.spec.{js,jsx,ts,tsx}'],
     rules: {
       'react/forbid-elements': 'off',
+      '@typescript-eslint/no-unused-vars': 'off', // Allow unused vars in tests
     },
   }
 );

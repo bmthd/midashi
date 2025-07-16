@@ -8,7 +8,7 @@ describe('ESLint rules for primitive HTML elements', () => {
   afterEach(() => {
     try {
       unlinkSync(testFileName);
-    } catch (e) {
+    } catch (_e) {
       // File might not exist, ignore error
     }
   });
