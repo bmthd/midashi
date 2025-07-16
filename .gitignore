@@ -12,8 +12,9 @@ dist
 dist-ssr
 *.local
 
-# ESLint test files
-eslint-test-file.tsx
+# ESLint plugin build artifacts
+packages/*/dist
+packages/*/node_modules
 
 # Editor directories and files
 .vscode/*

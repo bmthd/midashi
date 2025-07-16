@@ -1,0 +1,55 @@
+{
+  "name": "eslint-plugin-midashi",
+  "version": "1.0.0",
+  "description": "ESLint plugin to enforce usage of midashi components instead of primitive HTML elements",
+  "keywords": [
+    "eslint",
+    "eslint-plugin",
+    "react",
+    "midashi",
+    "heading",
+    "html",
+    "semantic"
+  ],
+  "author": "bmthd <jougennotuki67@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bmthd/midashi",
+    "directory": "packages/eslint-plugin-midashi"
+  },
+  "homepage": "https://github.com/bmthd/midashi",
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "vitest",
+    "lint": "eslint src --ext .ts",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@typescript-eslint/utils": "^8.0.0"
+  },
+  "devDependencies": {
+    "@types/eslint": "^8.0.0",
+    "@types/node": "^22.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "@typescript-eslint/rule-tester": "^8.0.0",
+    "eslint": "^9.0.0",
+    "typescript": "^5.4.5",
+    "vitest": "^3.0.0"
+  },
+  "peerDependencies": {
+    "eslint": ">=8.0.0"
+  }
+}
