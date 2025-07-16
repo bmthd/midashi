@@ -188,6 +188,99 @@ const MyHeading = () => {
 };
 ```
 
+## ESLint Rules
+
+This library provides ESLint rules that ensure developers use midashi components instead of primitive HTML elements to maintain proper heading hierarchy management.
+
+### Installation and Setup
+
+The ESLint configuration is included in the library. To use the ESLint rules in your project:
+
+1. Install the required dependencies:
+```bash
+npm install --save-dev eslint @eslint/js @types/eslint__js eslint-plugin-react eslint-plugin-react-hooks @typescript-eslint/eslint-plugin @typescript-eslint/parser typescript-eslint
+```
+
+2. Add the following ESLint configuration to your `eslint.config.js`:
+
+```javascript
+import js from '@eslint/js';
+import tseslint from 'typescript-eslint';
+import react from 'eslint-plugin-react';
+
+export default tseslint.config(
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
+  {
+    files: ['**/*.{js,jsx,ts,tsx}'],
+    plugins: {
+      react,
+    },
+    rules: {
+      'react/forbid-elements': [
+        'error',
+        {
+          forbid: [
+            { element: 'h1', message: 'Use <H> component from midashi instead.' },
+            { element: 'h2', message: 'Use <H> component from midashi instead.' },
+            { element: 'h3', message: 'Use <H> component from midashi instead.' },
+            { element: 'h4', message: 'Use <H> component from midashi instead.' },
+            { element: 'h5', message: 'Use <H> component from midashi instead.' },
+            { element: 'h6', message: 'Use <H> component from midashi instead.' },
+            { element: 'main', message: 'Use <Main> component from midashi instead.' },
+            { element: 'section', message: 'Use <Section> component from midashi instead.' },
+            { element: 'header', message: 'Use <Header> component from midashi instead.' },
+            { element: 'footer', message: 'Use <Footer> component from midashi instead.' },
+            { element: 'article', message: 'Use <Article> component from midashi instead.' },
+            { element: 'aside', message: 'Use <Aside> component from midashi instead.' },
+            { element: 'nav', message: 'Use <Nav> component from midashi instead.' },
+          ],
+        },
+      ],
+    },
+  }
+);
+```
+
+### What the Rules Prevent
+
+The ESLint rules prevent usage of primitive HTML elements that could break heading hierarchy:
+
+- **Heading elements**: `h1`, `h2`, `h3`, `h4`, `h5`, `h6` → Use `<H>` instead
+- **Semantic elements**: `main`, `section`, `header`, `footer`, `article`, `aside`, `nav` → Use corresponding midashi components
+
+### Example
+
+❌ **Bad** (will trigger ESLint errors):
+```tsx
+function App() {
+  return (
+    <main>
+      <h1>Title</h1>
+      <section>
+        <h2>Subtitle</h2>
+      </section>
+    </main>
+  );
+}
+```
+
+✅ **Good** (follows midashi patterns):
+```tsx
+import { H, Main, Section } from 'midashi';
+
+function App() {
+  return (
+    <Main>
+      <H>Title</H>
+      <Section>
+        <H>Subtitle</H>
+      </Section>
+    </Main>
+  );
+}
+```
+
 ## License
 
 MIT
