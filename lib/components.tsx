@@ -1,5 +1,5 @@
 import type { FC, HTMLProps } from "react";
-import { NextHeadingProvider } from "./context";
+import { NextHeadingProvider } from "./context.ts";
 
 /**
  * main element wrapped with `NextHeadingProvider`
