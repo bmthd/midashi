@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      midashi:
+        specifier: file:..
+        version: file:..(@types/react@19.1.8)(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -1079,6 +1082,17 @@ packages:
   micromatch@4.0.8:
     resolution: {integrity: sha512-PXwfBhYu0hBCPw8Dn0E+WDYb7af3dSLVWKi3HGv84IdF4TyFoC0ysxFd0Goxw7nSv4T/PzEJQxsYsEiFCKo2BA==}
     engines: {node: '>=8.6'}
+
+  midashi@file:..:
+    resolution: {directory: .., type: directory}
+    peerDependencies:
+      '@types/react': '*'
+      react: '>=17.0.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      react:
+        optional: true
 
   minimatch@3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
@@ -2285,6 +2299,11 @@ snapshots:
     dependencies:
       braces: 3.0.3
       picomatch: 2.3.1
+
+  midashi@file:..(@types/react@19.1.8)(react@19.1.0):
+    optionalDependencies:
+      '@types/react': 19.1.8
+      react: 19.1.0
 
   minimatch@3.1.2:
     dependencies:

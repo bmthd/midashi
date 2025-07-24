@@ -1,15 +1,16 @@
 import { useCurrentLevel, useNextLevel, Main, Section } from 'midashi';
+import React from 'react';
 
 function CustomHeading({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   const level = useCurrentLevel();
-  const Tag = level as keyof JSX.IntrinsicElements;
+  const Tag = level as keyof React.JSX.IntrinsicElements;
   
   return <Tag className={`custom-heading ${className}`}>{children}</Tag>;
 }
 
 function NextLevelButton({ children }: { children: React.ReactNode }) {
   const nextLevel = useNextLevel();
-  const Tag = nextLevel as keyof JSX.IntrinsicElements;
+  const Tag = nextLevel as keyof React.JSX.IntrinsicElements;
   
   return (
     <Tag className="text-sm text-blue-600 font-medium cursor-pointer hover:underline">
