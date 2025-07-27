@@ -1,10 +1,10 @@
-import { Main, Section, Article, Aside, Footer, Header, Nav } from "./components";
+import { Article, Aside, Footer, Header, Main, Nav, Section } from "./components";
 import {
   H,
+  type HeadingLevel,
   NextHeadingProvider,
   useCurrentLevel,
   useNextLevel,
-  type HeadingLevel,
 } from "./context";
 
 export {
