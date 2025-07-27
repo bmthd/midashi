@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# ESLint plugin build artifacts
+packages/*/dist
+packages/*/node_modules
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

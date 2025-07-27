@@ -5,18 +5,28 @@
 This is a library for React that concisely manages heading levels.
 Dependencies are React only, and 100% developed in TypeScript.
 
+## Packages
+
+This repository is a monorepo that contains:
+
+- **[midashi](./lib)** - Core React components for heading hierarchy management
+- **[eslint-plugin-midashi](./packages/eslint-plugin-midashi)** - ESLint plugin to enforce usage of midashi components
+
 ## Installation
 
 ```bash:npm
 npm install midashi
+npm install --save-dev eslint-plugin-midashi  # Optional: ESLint plugin
 ```
 
 ```bash:yarn
 yarn add midashi
+yarn add --dev eslint-plugin-midashi  # Optional: ESLint plugin
 ```
 
 ```bash:pnpm
 pnpm add midashi
+pnpm add --save-dev eslint-plugin-midashi  # Optional: ESLint plugin
 ```
 
 ```bash:bun

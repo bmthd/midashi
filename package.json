@@ -14,6 +14,9 @@
   },
   "homepage": "https://github.com/bmthd/midashi",
   "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
   "files": [
     "/dist"
   ],
@@ -30,12 +33,14 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && tsc",
+    "build:plugin": "npm run build --workspace=packages/eslint-plugin-midashi",
+    "test:plugin": "npm run test --workspace=packages/eslint-plugin-midashi",
     "format:test": "biome format ./lib",
     "format:fix": "biome format --write ./lib",
     "lint:test": "biome lint ./lib",
     "lint:safe-fix": "biome check --apply ./lib",
     "lint:fix": "biome check --apply-unsafe ./lib",
-    "test": "vitest",
+    "test": "npm run build:plugin && vitest",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
