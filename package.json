@@ -43,7 +43,7 @@
     "@testing-library/jest-dom": "^6.4.5",
     "@testing-library/react": "^16.0.0",
     "@types/node": "^22.0.0",
-    "@types/react": "^18.3.2",
+    "@types/react": "^19.0.0",
     "@vitejs/plugin-react": "^4.2.1",
     "happy-dom": "^17.0.0",
     "typescript": "^5.4.5",
