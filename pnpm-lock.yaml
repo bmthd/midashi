@@ -32,7 +32,7 @@ importers:
         version: 5.0.0(vite@6.3.5(@types/node@22.16.3))
       happy-dom:
         specifier: ^17.0.0
-        version: 17.4.7
+        version: 17.6.3
       typescript:
         specifier: ^5.4.5
         version: 5.9.2
@@ -44,7 +44,7 @@ importers:
         version: 4.5.4(@types/node@22.16.3)(rollup@4.41.1)(typescript@5.9.2)(vite@6.3.5(@types/node@22.16.3))
       vitest:
         specifier: ^3.0.0
-        version: 3.2.1(@types/node@22.16.3)(happy-dom@17.4.7)
+        version: 3.2.1(@types/node@22.16.3)(happy-dom@17.6.3)
 
 packages:
 
@@ -140,8 +140,8 @@ packages:
     resolution: {integrity: sha512-Nms86NXrsaeU9vbBJKni6gXiEXZ4CVpYVzEjDH9Sb8vmZ3UljyA1GSOJl/6LGPO8EHLuSF9H+IxNXHPX8QHJ4g==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/runtime@7.28.2':
-    resolution: {integrity: sha512-KHp2IflsnGywDjBWDkR9iEqiWSpc8GIi0lgTT3mOElT0PP1tG26P4tmFI2YvAdzgq9RGyoHZQEIEdZy6Ec5xCA==}
+  '@babel/runtime@7.28.3':
+    resolution: {integrity: sha512-9uIQ10o0WGdpP6GDhXcdOJPJuDgFtIDtN/9+ArJQ2NAfAmiuhTQdzkaTGR33v43GYS2UrSA0eX2pPPHoFVvpxA==}
     engines: {node: '>=6.9.0'}
 
   '@babel/template@7.27.2':
@@ -881,9 +881,9 @@ packages:
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
 
-  happy-dom@17.4.7:
-    resolution: {integrity: sha512-NZypxadhCiV5NT4A+Y86aQVVKQ05KDmueja3sz008uJfDRwz028wd0aTiJPwo4RQlvlz0fznkEEBBCHVNWc08g==}
-    engines: {node: '>=18.0.0'}
+  happy-dom@17.6.3:
+    resolution: {integrity: sha512-UVIHeVhxmxedbWPCfgS55Jg2rDfwf2BCKeylcPSqazLz5w3Kri7Q4xdBJubsr/+VUzFLh0VjIvh13RaDA2/Xug==}
+    engines: {node: '>=20.0.0'}
 
   has-flag@4.0.0:
     resolution: {integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==}
@@ -1391,7 +1391,7 @@ snapshots:
     dependencies:
       regenerator-runtime: 0.14.1
 
-  '@babel/runtime@7.28.2': {}
+  '@babel/runtime@7.28.3': {}
 
   '@babel/template@7.27.2':
     dependencies:
@@ -1705,7 +1705,7 @@ snapshots:
   '@testing-library/dom@10.1.0':
     dependencies:
       '@babel/code-frame': 7.27.1
-      '@babel/runtime': 7.28.2
+      '@babel/runtime': 7.28.3
       '@types/aria-query': 5.0.4
       aria-query: 5.3.0
       chalk: 4.1.2
@@ -2073,7 +2073,7 @@ snapshots:
 
   graceful-fs@4.2.11: {}
 
-  happy-dom@17.4.7:
+  happy-dom@17.6.3:
     dependencies:
       webidl-conversions: 7.0.0
       whatwg-mimetype: 3.0.0
@@ -2392,7 +2392,7 @@ snapshots:
       '@types/node': 22.16.3
       fsevents: 2.3.3
 
-  vitest@3.2.1(@types/node@22.16.3)(happy-dom@17.4.7):
+  vitest@3.2.1(@types/node@22.16.3)(happy-dom@17.6.3):
     dependencies:
       '@types/chai': 5.2.2
       '@vitest/expect': 3.2.1
@@ -2419,7 +2419,7 @@ snapshots:
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 22.16.3
-      happy-dom: 17.4.7
+      happy-dom: 17.6.3
     transitivePeerDependencies:
       - jiti
       - less
