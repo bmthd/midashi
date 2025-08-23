@@ -39,7 +39,7 @@
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.7.3",
+    "@biomejs/biome": "^2.0.0",
     "@testing-library/jest-dom": "^6.4.5",
     "@testing-library/react": "^16.0.0",
     "@types/node": "^22.0.0",
